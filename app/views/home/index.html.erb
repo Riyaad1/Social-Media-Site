@@ -1,0 +1,18 @@
+<div class="grid grid-cols-2 md:h-screen">
+  <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <%= image_tag "logo.png", class: "block" %>
+  </section>
+
+  <section class="flex flex-col items-start justify-center px-6 py-8 mr-auto md:h-screen lg:py-0 w-full max-w-2xl">
+    <div class="p-4 space-y-4 md:space-y-6 sm:p-8 w-full">
+      <h1 class="text-white text-7xl">Join now</h1>
+      <%= link_to "Create new account", new_user_registration_path, class: "block w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-amber-600 hover:bg-amber-700 focus:ring-amber-800 cursor-pointer" %>
+      <div class="flex items-center text-white">
+        <hr class="flex-grow border-neutral-500" />
+        <span class="px-2 text-sm">OR</span>
+        <hr class="flex-grow border-neutral-500" />
+      </div>
+      <%= link_to "Sign In", new_user_session_path, class: "block w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-neutral-600 hover:bg-neutral-700 focus:ring-neutral-800 cursor-pointer" %>
+    </div>
+  </section>
+</div>
