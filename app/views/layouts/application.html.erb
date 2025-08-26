@@ -23,10 +23,20 @@
   </head>
 
   <body class="bg-neutral-900">
-    <main class="">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
-    </main>
+    <div class="flex min-h-screen">
+      <% if show_sidenav? %>
+        <%= render partial: "layouts/leftnav" %>
+      <% end %>
+
+      <main class="flex-1 ml-96 mr-96 text-white">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </main>
+
+      <% if show_sidenav? %>
+        <%= render partial: "layouts/rightnav" %>
+      <% end %>
+    </div>
   </body>
 </html>
