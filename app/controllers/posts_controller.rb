@@ -2,23 +2,23 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
+    @post = Post.new
   end
 
   def show
     @post = Post.find(params[:id])
   end
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to @post, notice: "Post Successfully Created."
-    else
-      render :new, status: :unprocessable_content
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_path }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "post_create_form", locals: { post: @post }) }
+        format.html { render :index, status: :unprocessable_content }
+      end
     end
   end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Product.find(params[:id])
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to @post
     else
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Product.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end

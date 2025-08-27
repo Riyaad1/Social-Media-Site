@@ -1,0 +1,11 @@
+<%= form_with model: post, id: dom_id(post) do |form| %>
+  <div class="flex items-center space-x-2 max-w-3xl mx-auto" data-controller="disable-post">
+    <%= form.text_field :content, placeholder: "Post your thoughts",
+        class: "flex-1 border text-sm rounded-lg p-2.5 bg-neutral-700 border-neutral-600 placeholder-neutral-400 text-white",
+        data: { disable_post_target: "input", action: "input->disable-post#toggleButton" }  %>
+    <%= form.submit "Post",
+        class: "bg-amber-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed",
+        data: { disable_post_target: "submit" },
+        disabled: true %>
+  </div>
+<% end %>

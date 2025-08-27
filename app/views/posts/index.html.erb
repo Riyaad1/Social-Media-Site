@@ -1,19 +1,16 @@
 <div class="md:h-screen">
-  <section id="search-container" class="border-b border-neutral-700 p-2">
+  <section id="search-container" class="border-b border-neutral-700 p-4">
     <%= render partial: "searchbar" %>
   </section>
-  <section id="create-post">
-    
+  <section id="create-post" class="border-b border-neutral-700 p-4">
+    <%= turbo_frame_tag "post_create_form" do%>
+      <%= render partial: "post_create_form", locals: { post: @post } %>
+    <% end %>
   </section>
-  <section id="post-list" class="p-2 text-white">
-    <h1>Posts</h1>
-
-    <%= link_to "New post", new_post_path %>
-      <div>
-        <% @posts.each do |post| %>
-      <div>
-        <%= link_to post.content, post %>
-      </div>
+  <section id="post-list" class="p-4 text-white">
+    <%= turbo_stream_from "posts" %>
+    <%= turbo_frame_tag "posts" do %>
+      <%= render @posts %>
     <% end %>
   </section>
 </div>

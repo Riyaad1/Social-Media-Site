@@ -55,3 +55,5 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "devise", "~> 4.9"
 
 gem "image_processing", ">= 1.2"
+
+gem "mini_magick"
