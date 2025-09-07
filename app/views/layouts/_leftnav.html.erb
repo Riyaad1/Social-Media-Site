@@ -10,12 +10,6 @@
             <span class="ml-3">Home</span>
           <% end %>
         </li>
-        <li>
-          <%= link_to posts_path, class: "flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-neutral-700 group" do %>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transition duration-75 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-            <span class="ml-3">Explore</span>
-          <% end %>
-        </li>
       </ul>
     </div>
     <div class="absolute bottom-0 px-3 pb-4 w-full z-20 border-r border-neutral-700" data-controller="dropdown">
@@ -34,6 +28,9 @@
         <ul class="space-y-2">
           <li>
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
+          </li>
+          <li>
+            <%= link_to "Profile", edit_user_registration_path, class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
           </li>
         </ul>
       </div>

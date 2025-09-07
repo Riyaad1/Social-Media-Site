@@ -1,0 +1,24 @@
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="p-4 flex space-x-3 border border-neutral-700 mb-4 rounded-lg">
+    
+    <% comment_user = comment.user %>
+
+    <div class="flex-shrink-0">
+      <% if comment_user.profile_image.attached? %>
+        <%= image_tag comment_user.profile_image.variant(resize_to_fill: [40, 40]).processed, class: "w-10 h-10 rounded-full" %>
+      <% else %>
+        <%= image_tag "default_avatar.jpg", class: "w-10 h-10 rounded-full" %>
+      <% end %>
+    </div>
+
+    <div class="flex-1">
+      <div class="flex items-center space-x-2">
+        <p class="font-semibold text-white"><%= comment_user.name %></p>
+        <p class="text-neutral-400 text-sm">@<%= comment_user.username %></p>
+        <p class="text-neutral-500 text-xs">· <%= comment.created_at %></p>
+      </div>
+
+      <p class="mt-1 text-neutral-200 text-sm leading-relaxed"><%= comment.content %></p>
+    </div>
+  </div>
+<% end %>

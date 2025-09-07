@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :posts, except: [ :new ]
+  resources :posts, except: [ :new ] do
+    resources :comments, only: [ :create ]
+  end
 
   root "home#index"
 end
