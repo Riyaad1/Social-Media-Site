@@ -1,26 +1,21 @@
 <%= turbo_frame_tag dom_id(post) do %>
-  <%= link_to post_path(post), data: { turbo_frame: "_top" }, class: "block border border-neutral-700 mb-4 rounded-lg" do %>
-    <div class="p-4 cursor-pointer flex space-x-3">
-      
-      <% post_user = post.user %>
-
-      <div class="flex-shrink-0">
-        <% if post_user.profile_image.attached? %>
-          <%= image_tag post_user.profile_image.variant(resize_to_fill: [40, 40]).processed, class: "w-10 h-10 rounded-full" %>
-        <% else %>
-          <%= image_tag "default_avatar.jpg", class: "w-10 h-10 rounded-full" %>
-        <% end %>
-      </div>
-
-      <div class="flex-1">
-        <div class="flex items-center space-x-2">
-          <p class="font-semibold text-white"><%= post_user.name %></p>
-          <p class="text-neutral-400 text-sm">@<%= post_user.username %></p>
-          <p class="text-neutral-500 text-xs">· <%= post.created_at %></p>
-        </div>
-
-        <p class="mt-1 text-neutral-200 text-sm leading-relaxed"><%= post.content %></p>
-      </div>
-    </div>
-  <% end %>
+  <% post_user = post.user %>
+  <div class="border border-neutral-700 mb-4 rounded-lg">
+    <!-- Header with username link outside of post link -->
+    <%= link_to profile_path(post_user), class: "p-4 pb-2 flex items-center space-x-2", data: { turbo_frame: "_top" } do %>
+      <% if post_user.profile_image.attached? %>
+        <%= image_tag post_user.profile_image.variant(resize_to_fill: [40, 40]).processed, class: "w-10 h-10 rounded-full" %>
+      <% else %>
+        <%= image_tag "default_avatar.jpg", class: "w-10 h-10 rounded-full" %>
+      <% end %>
+      <p class="font-semibold text-white hover:underline"><%= post_user.name %></p>
+      <p class="font-semibold text-neutral-400 text-sm">@<%= post_user.username %></p>
+      <p class="text-neutral-500 text-xs">· <%= post.created_at %></p>
+    <% end %>
+    
+    <!-- Post content as separate link -->
+    <%= link_to post_path(post), data: { turbo_frame: "_top" }, class: "block p-4 pt-0 cursor-pointer" do %>
+      <p class="mt-1 text-neutral-200 text-sm leading-relaxed"><%= post.content %></p>
+    <% end %>
+  </div>
 <% end %>
