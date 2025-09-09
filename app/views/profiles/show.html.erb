@@ -1,0 +1,30 @@
+<div class="md:h-screen">
+  <section id="profile-head" class="border-b border-neutral-700 p-4">
+    <div class="flex items-center space-x-6 mb-6">
+      <div class="flex-shrink-0">
+        <% if @profile.profile_image.attached? %>
+            <%= image_tag @profile.profile_image.variant(resize_to_fill: [40, 40]).processed, class: "h-20 w-20 rounded-full object-cover" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", class: "w-6 h-6 transition duration-75 text-neutral-400 group-hover:text-white" %>
+          <% end %>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900"><%= @profile.name %></h1>
+        <p class="text-gray-600">@<%= @profile.username %></p>
+      </div>
+    </div>
+    
+    <% if @profile.bio.present? %>
+      <div class="mb-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-2">About</h3>
+        <p class="text-gray-700"><%= simple_format(@profile.bio) %></p>
+      </div>
+    <% end %>
+  </section>
+  <section id="post-list" class="p-4 text-white">
+    <%= turbo_stream_from "posts" %>
+    <%= turbo_frame_tag "posts" do %>
+      <%= render @posts %>
+    <% end %>
+  </section>
+</div>

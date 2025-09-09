@@ -27,10 +27,13 @@
       <div class="hidden absolute bottom-full w-full px-2 py-2 left-0 mb-2 z-50 text-base list-non rounded divide-y divide-neutral-100 shadow bg-neutral-700" data-dropdown-target="menu" >
         <ul class="space-y-2">
           <li>
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
+            <%= link_to "Profile", profile_path(current_user), class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
           </li>
           <li>
             <%= link_to "Settings", edit_user_registration_path, class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
+          </li>
+          <li>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "w-full p-1 rounded-lg block text-sm text-left hover:text-white text-neutral-300 hover:bg-neutral-600" %>
           </li>
         </ul>
       </div>
